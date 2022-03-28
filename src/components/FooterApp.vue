@@ -82,8 +82,7 @@
   justify-content: space-between;
   width: 100%;
   min-height: 89px;
-  border: 1px solid white;
-
+  
   .p {
     color: grey;
     //text-shadow: 2px 0 3px black;
@@ -130,23 +129,27 @@
       transition: 0.4s;
     }
   }
+  
+.info_link:hover {
+    color: rgb(3, 231, 3);
+    box-shadow: 0 2px 1px 1px rgba(255, 255, 255, 59%);
+    background-color: rgba(0.0.0.10%);
+  }
 
   .p:hover {
     color: white;
     box-shadow: 0 5px 9px 2px white;
     border: 1px solid rgb(252, 13, 13);
   }
-  .p:hover a {
-    color: green;
-    box-shadow: 0 2px 1px 1px rgba(255, 255, 255, 59%);
-    background-color: rgba(255, 255, 255, 0.99);
-  }
+  
+  
   .p:hover a:active {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1);
     transition: 0s;
     background-color: rgba(255, 255, 255, 49%);
   }
 }
+
 
 .icon-linux {
   color: yellow;
@@ -226,7 +229,10 @@ i:active {
   box-shadow: 0 1px 16px white;
 }
 
-.span_copyright {
+.span_copyright {  
+  display: flex;  
+  justify-content: center;
+  align-items: center;
   width: 100%;
   color: rgba(255, 255, 255, 19%);
   transition: 1s;
@@ -238,7 +244,7 @@ i:active {
 }
 .icons_container {
   display: flex;
-  margin: 16px 0;
+  margin: 16px 0 5px;
   justify-content: center;
   align-items: center;
   width: 100%;
