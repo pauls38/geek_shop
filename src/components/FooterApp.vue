@@ -36,21 +36,29 @@
       </div>
     </div>
     <div class="icons_container">
+      <a href="https://twitter.com/?lang=ru" target="blank" class="z">
       <i>
         <img src="../../dist/fontello-icons/social/twitter.svg" />
       </i>
+      </a>
+      <a href="https://vk.com/" target="blank" class="z">
       <i>
         <img src="../../dist/fontello-icons/social/vk.svg" />
       </i>
-      <i>
-        <img src="../../dist/fontello-icons/social/ok.svg" />
-      </i>
+      </a>
+      <a href="https://ok.ru/" target="blank" class="z">
+        <i><img src="../../dist/fontello-icons/social/ok.svg" /></i>               
+      </a>
+      <a href="https://www.tiktok.com/" target="blank" class="z">
       <i>
         <img src="../../dist/fontello-icons/social/tiktok.svg" />
       </i>
+      </a>
+      <a href="https://www.youtube.com/" target="blank" class="z">
       <i>
         <img src="../../dist/fontello-icons/social/youtube.svg" />
       </i>
+      </a>
     </div>
 
     <span class="span_copyright"
@@ -71,7 +79,7 @@
   align-items: center;
   min-height: 250px;
   background: #4e3e38;
-  border: 4px solid blue;
+  border: 1px solid blue;
 }
 
 .footer_container_p {
@@ -79,11 +87,10 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
   min-height: 89px;
-  border: 1px solid white;
-
+   
   .p {
     color: grey;
     //text-shadow: 2px 0 3px black;
@@ -116,6 +123,7 @@
         }
       }
     }
+  
     a {
       box-shadow: 0 2px 1px 1px rgba(255, 255, 255, 19%);
       border-radius: 10px;
@@ -127,8 +135,14 @@
       color: rgba(243, 229, 169, 0.89);
       width: 70px;
       background-color: rgba(255, 255, 255, 9%);
-      transition: 0.4s;
+      transition: 0.4s;        
     }
+  }
+  
+.info_link:hover {
+    color: rgb(3, 231, 3);
+    box-shadow: 0 2px 1px 1px rgba(255, 255, 255, 59%);
+    background-color: rgba(0.0.0.10%);
   }
 
   .p:hover {
@@ -136,17 +150,15 @@
     box-shadow: 0 5px 9px 2px white;
     border: 1px solid rgb(252, 13, 13);
   }
-  .p:hover a {
-    color: green;
-    box-shadow: 0 2px 1px 1px rgba(255, 255, 255, 59%);
-    background-color: rgba(255, 255, 255, 0.99);
-  }
+  
+  
   .p:hover a:active {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1);
     transition: 0s;
     background-color: rgba(255, 255, 255, 49%);
   }
 }
+
 
 .icon-linux {
   color: yellow;
@@ -197,20 +209,20 @@
   color: darkorange;
 }
 
-i {
+.z, i {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 32px;
   height: 32px;
-  margin: 5px;
+  margin: 10px;
   transition: 0.3s;
   border: 2px solid rgba(255, 255, 255, 19%);
   border-radius: 50%;
 
   & > img {
-    width: 16px;
-    height: 16px;
+    width: 32px;
+    height: 18px;
   }
 }
 
@@ -226,7 +238,10 @@ i:active {
   box-shadow: 0 1px 16px white;
 }
 
-.span_copyright {
+.span_copyright {  
+  display: flex;  
+  justify-content: center;
+  align-items: center;
   width: 100%;
   color: rgba(255, 255, 255, 19%);
   transition: 1s;
@@ -236,14 +251,15 @@ i:active {
   transition: 1s;
   letter-spacing: 1em;
 }
+
 .icons_container {
   display: flex;
-  margin: 16px 0;
+  margin: 16px 0 5px;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
-@media (max-width: 360px) {
+@media (max-width: 460px) {
   footer {
     min-width: 360px;
   }
