@@ -2,15 +2,15 @@
   <footer class="footer">
     <div class="footer_container_p">
       <div class="p">
-        <h4 class="info_title">Каталог товаров</h4>
-        <ul class="info_list">
-          <li><a href="#" class="info_link">Струнные</a></li>
-          <li><a href="#" class="info_link">Духовые</a></li>
-          <li><a href="#" class="info_link">Язычковые</a></li>
-          <li><a href="#" class="info_link">Ударные</a></li>
-          <li><a href="#" class="info_link">Клавишные</a></li>
-          <li><a href="#" class="info_link">Механические</a></li>
-          <li><a href="#" class="info_link">Электромузыкальные</a></li>
+        <h4 class="info_title">Категории товаров</h4>
+        <ul class="info_list">          
+          <li class="info_link" v-for="item in catalogCategory" v-bind:key="item.id" @click="$router.push('/' + item.slug)">Инструменты</li>
+          <li class="info_link" @click="$router.push('/sport')">Спортивные товары</li>
+          <li class="info_link" @click="$router.push('/musiсal instruments')">Музыкальные инструменты</li>
+          <li class="info_link" @click="$router.push('/clothes')">Одежда</li>                
+       <!--  <li><a href="#" class="info_link">Клавишные</a></li>            -->
+       <!--  <li><a href="#" class="info_link">Механические</a></li>         -->
+       <!--  <li><a href="#" class="info_link">Электромузыкальные</a></li>   -->
         </ul>
       </div>
       <div class="p">
@@ -111,7 +111,7 @@
       margin-bottom: 4px;
     }
 
-    .info_list {
+    .info_list, .info_link {
       list-style-type: none;
       text-align: left;
 

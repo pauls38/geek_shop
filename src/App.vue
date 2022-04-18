@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+  <p>Hello Vue!</p>
+  <v-main-wrapper />   
     <HeaderApp />
     <router-view />
     <ClearBooth />
@@ -8,17 +10,22 @@
 </template>
 
 <script>
+
 import HeaderApp from './components/HeaderApp.vue'
 import Footer from './components/FooterApp'
 import ClearBooth from './components/ClearBooth'
 import axios from 'axios'
+import vMainWrapper from './components/v-Main-wrapper'
 export default {
   name: 'app',
-  data() {
-    return {
-      dataArray: []
-    }
-  },
+  components: {
+    vMainWrapper
+  }
+  //data() {
+  //  return {
+  //    dataArray: []
+  //  }
+  //},
   mounted() {
     // this.$store.dispatch('loadCatalog')
     // this.$store.dispatch('loadCart')
