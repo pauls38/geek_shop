@@ -53,9 +53,8 @@ export default {
 
 }
 </script>
-<style>
+<style lang="scss" scoped>
 #form {
-  margin-top: 79px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -63,7 +62,7 @@ export default {
   height: 400px;
 }
 h2 {
-  margin-bottom: 100px;
+  margin-bottom: 30px;
 }
 .input_form {
   margin: 10px 0 0 20px;
@@ -131,9 +130,7 @@ label[name="form"] {
   box-shadow: 0 2px 3px 1px white;
 }
 @media (max-width: 980px) {
-  #form {
-    margin: 220px 0 0 0;
-  }
+
 }
 @media (max-width: 415px) {
 .label_form {
