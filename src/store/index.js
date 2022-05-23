@@ -22,7 +22,8 @@ export default createStore({
     setCart: (state, cart) => { state.cart = cart },
     setCategory: (state, category) => {state.category = category },
     preView: (state, catalog) => { state.preView = catalog;
-    alert('test') },
+    //alert('test') 
+    },
 
     addToCart: (state, product) => { 
       const existProduct = state.cart.find(item => item.id === product.id)
