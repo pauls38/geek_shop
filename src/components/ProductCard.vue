@@ -1,16 +1,15 @@
 <template>
   <div class="card">
     <div class="product-container">
-      <img require :src="data.url" alt="jpeg" class="div-product-img" width="332" height="200">
-      <h3 class="h3-product">{{ data.name }}</h3>
-      <p class="p-body-product">{{ data.description }}</p>
+      <img :src="this.$store.state.imageUrl + data.image" alt="jpeg" class="div-product-img" width="332" height="200">
+      <h3 class="h3-product">{{ data.title }}</h3>
+      <p class="p-body-product">{{ data.short_description }}</p>
         <div v-if="data.quantity" class="div_quantity">
-         <input type="number" v-model="quantity" />
+         <input type="number" class="input_num" v-model="quantity" />
         </div>
-      <span class="span-group-price">{{ data.price }} $</span>
-
-      <slot></slot>
-    </div>
+      <span class="span-group-price">{{ data.price }} руб</span>
+      <slot class="slot_btn"></slot>
+    </div>    
   </div>
 </template>
 
@@ -36,109 +35,125 @@
 
 <style>
 .card {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+margin: 0 auto;
 }
 
 .product-container {
   transition: 0.3s;
   list-style: none;
   position: relative;
-  margin: 1px 17px 14px 0;
-  padding: 15px;
-  width: 332px;
-  height: 423px;
-  cursor: url("../assets/Vector.png"), pointer;
+  /*overflow: hidden;*/
+  margin: 10px 5px;
+  padding: 5px;
+  min-width: 660px;
+  height: 300px;
+  cursor: pointer;
   background: #FFFEFB;
-  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.8), 0 1px 5px rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
+  /*box-shadow: 0 10px 14px rgba(0, 0, 0, 0.8), 0 1px 5px rgba(0, 0, 0, 0.5);*/
+  border-radius: 15px;
 }
 
 .product-container:hover {
-  transform: scale(1.1);
-  transition: 0.3s;
-  box-shadow: 0 20px 24px rgba(0, 0, 0, 0.8), 0 10px 15px rgba(0, 0, 0, 0.5);
-}
-
-.product-container:hover .span-group-price {
-  border-bottom: 3px solid green;
-  margin-bottom: -3px;
-
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 18%), 0 5px 7px rgba(0, 0, 0, 15%);
 }
 
 .div-product-img {
-  width: 337px;
-  position: absolute;
-  left: 12px;
-  height: 200px;
-  border-radius: 4px 4px 0 0;
-  box-shadow: 1px 3px 10px 3px grey;
+  min-width: 300px;
+  float: left;
+  /*position: absolute;*/
+  left: -50px;
+  overflow: hidden;
+  top: 10px;
+  height: 100%;
+  /*outline: 1px solid black;*/
 }
 
 .h3-product {
   position: absolute;
-  width: 211px;
-  height: 25px;
-  left: 70px;
-  bottom: 182px;
+  width: 300px;
+  min-height: 25px;
+  right: 20px;
+  top: 5px;
+  text-align: left;
   font-family: 'Source Sans Pro', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 25px;
   color: #3F3F3F;
+  padding: 5px;
   letter-spacing: 0.01em;
+  /*border: 1px solid black;*/
 }
 .div_quantity {
-  position: absolute;
-  bottom: 70px;
-  right: 30px;
-  border: 2px solid grey;
-  border-radius: 5px;
-  outline: none;
+  position: relative;
+  top: 200px;
+  left: 290px;
+  width: 60px;
+  height: 35px;
+  /*border: 1px solid rgba(0,0,0,20%);*/
+  border-radius: 10px;
+  /*border-radius: 5px;*/
+  /*outline: none;*/
 
 }
-.div_quantity input {
+.div_quantity .input_num {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
   width: 50px;
-  padding: 2px;
-  border: none;
-}
-.div_quantity input:focus-visible {
+  height: 25px;
   outline: none;
+  border: none;
+  border-radius: 10px;
 }
+.input_num:hover {
+  box-shadow:  0 2px 4px rgba(0, 0, 0, 48%);
+}
+
 
 .p-body-product {
   position: absolute;
   width: 300px;
-  height: 80px;
-  left: 30px;
-  bottom: 87px;
+  height: 125px;
+  /*overflow: hidden;*/
+  padding: 5px;
+  overflow-y: auto;
+  right: 20px;
+  top: 60px;
   text-align: left;
   font-family: 'Source Sans Pro', sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 20px;
   color: #3F3F3F;
+  /*outline: 1px solid rgba(0, 0, 0, 10% );*/
 }
+.p-body-product::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(0, 0, 0, 4%);
 
+}
 .span-group-price {
   position: absolute;
-  width: 100px;
+  width: 200px;
+  /*border: 1px solid black;*/
   height: 30px;
-  left: 30px;
-  bottom: 23px;
+  right: 120px;
+  padding: 5px;
+  bottom: 70px;
   letter-spacing: 0.02em;
-  text-align: center;
+  text-align: left;
   font-family: 'Source Sans Pro', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
   line-height: 30px;
-  color: green;
+  color: rgba(0, 0, 0, 70%);
+  /*border: 1px solid black;*/
 }
+
 
 </style>
