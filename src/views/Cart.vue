@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ProductCard from '../components/ProductCard'
+import ProductCard from '../components/ProductCard.vue'
 
 export default {
   name: 'Cart',
@@ -29,5 +29,19 @@ export default {
 </script>
 
 <style>
-
+.btn-cart {
+  outline: none;
+    background: #990f04;
+    position: absolute;
+    box-shadow: 1px 3px 4px 1px grey;
+    bottom: 14px;
+    color: white;
+    right: 180px;
+    width: 130px;
+    padding: 7px;
+    margin: 10px;
+    border-radius: 15px;
+    transition: 0.2s;
+    border: none;
+}
 </style>

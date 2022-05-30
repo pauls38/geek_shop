@@ -1,42 +1,56 @@
 <template>
   <div class="card">
     <div class="product-container">
-      <img :src="this.$store.state.imageUrl + data.image" alt="jpeg" class="div-product-img" width="332" height="200">
+      <img
+        :src="this.$store.state.imageUrl + data.image"
+        alt="jpeg"
+        class="div-product-img"
+        width="332"
+        height="200"
+      />
       <h3 class="h3-product">{{ data.title }}</h3>
-      <p class="p-body-product">{{ data.short_description }}</p>
-        <div v-if="data.quantity" class="div_quantity">
-         <input type="number" class="input_num" v-model="quantity" />
-        </div>
+      <p class="p-body-product">
+        {{ data.short_description }}
+      </p>
+
       <span class="span-group-price">{{ data.price }} руб</span>
+      <span v-if="quantity" class="quantity">Количество {{ quantity }} шт.</span>
       <slot class="slot_btn"></slot>
-      <button class="btn_v" v-on:click="preView(item)">Подробнее</button>
-    </div>    
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'ProductCard',
-    computed: {
-      quantity: {
-        get() {
-          // console.log(this.data)
-          return this.data.quantity
-        },
-        set(value) {
-          this.$store.dispatch('setQuantity', {id: this.data.id, quantity: value})
+export default {
+  name: "ProductCard",
+  computed: {
+    quantity: {
+      get() {
+        const itemFromCart = (this.$store.state.cart || []).find(
+          ({ id }) => this.data?.id === id
+        );
+
+        if (itemFromCart) {
+          return itemFromCart.quantity;
+        } else {
+          return null;
         }
-      }
+      },
+      set(value) {
+        this.$store.dispatch("setQuantity", {
+          id: this.data.id,
+          quantity: value,
+        });
+      },
     },
-    props: [
-      'data'
-    ]
-  }
+  },
+  props: ["data"],
+};
 </script>
 
 <style>
 .card {
-margin: 0 auto;
+  margin: 0 auto;
 }
 
 .product-container {
@@ -49,7 +63,7 @@ margin: 0 auto;
   min-width: 660px;
   height: 300px;
   cursor: pointer;
-  background: #FFFEFB;
+  background: #fffefb;
   /*box-shadow: 0 10px 14px rgba(0, 0, 0, 0.8), 0 1px 5px rgba(0, 0, 0, 0.5);*/
   border-radius: 15px;
 }
@@ -76,14 +90,32 @@ margin: 0 auto;
   right: 20px;
   top: 5px;
   text-align: left;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 25px;
-  color: #3F3F3F;
+  color: #3f3f3f;
   padding: 5px;
   letter-spacing: 0.01em;
+  /*border: 1px solid black;*/
+}
+.quantity {
+  position: absolute;
+  width: 155px;
+  /* border: 1px solid black; */
+  height: 30px;
+  right: 162px;
+  padding: 5px;
+  bottom: 100px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  font-family: "Source Sans Pro", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 70%);
   /*border: 1px solid black;*/
 }
 .div_quantity {
@@ -96,7 +128,6 @@ margin: 0 auto;
   border-radius: 10px;
   /*border-radius: 5px;*/
   /*outline: none;*/
-
 }
 .div_quantity .input_num {
   position: absolute;
@@ -110,9 +141,8 @@ margin: 0 auto;
   border-radius: 10px;
 }
 .input_num:hover {
-  box-shadow:  0 2px 4px rgba(0, 0, 0, 48%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 48%);
 }
-
 
 .p-body-product {
   position: absolute;
@@ -124,18 +154,17 @@ margin: 0 auto;
   right: 20px;
   top: 60px;
   text-align: left;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 22px;
   line-height: 20px;
-  color: #3F3F3F;
+  color: #3f3f3f;
   /*outline: 1px solid rgba(0, 0, 0, 10% );*/
 }
 .p-body-product::-webkit-scrollbar {
   width: 10px;
   background-color: rgba(0, 0, 0, 4%);
-
 }
 .span-group-price {
   position: absolute;
@@ -147,7 +176,7 @@ margin: 0 auto;
   bottom: 70px;
   letter-spacing: 0.02em;
   text-align: left;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -155,6 +184,4 @@ margin: 0 auto;
   color: rgba(0, 0, 0, 70%);
   /*border: 1px solid black;*/
 }
-
-
 </style>

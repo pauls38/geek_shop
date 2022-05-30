@@ -4,12 +4,11 @@
     <div class="product-list">
     <ProductDescriptionDrawer
       :data = "item" 
-      :active="active.data_drawer" 
-      v-on:close-data-drawer="closeDataDrawer()"/>
-      <ProductCard v-for="item of catalog" v-bind:key="item.id" v-bind:data="item" 
-      v-on:click="preView(item)">        
+      :active="active.data_drawer"
+      v-on:close-data-drawer="closeDataDrawer()" />
+      <ProductCard v-for="item of catalog" v-bind:key="item.id" v-bind:data="item" >        
         <button class="btn" v-on:click="addToCart(item)">В корзинку</button>
-        <!-- <button class="btn_v" v-on:click="preView(item)">Подробнее</button>>  -->       
+        <button class="btn_v" v-on:click="preView(item)">Подробнее</button>
       </ProductCard>
     </div>
   </div>
@@ -26,7 +25,7 @@ export default {
   data () {
     return {
       //items: items,
-      data: null,
+      //product: null,
       active: {
         data_drawer: false
       }
