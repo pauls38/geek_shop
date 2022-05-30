@@ -9,6 +9,7 @@
         </div>
       <span class="span-group-price">{{ data.price }} руб</span>
       <slot class="slot_btn"></slot>
+      <button class="btn_v" v-on:click="preView(item)">Подробнее</button>
     </div>    
   </div>
 </template>

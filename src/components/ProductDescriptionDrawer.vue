@@ -1,4 +1,4 @@
-<!--<template>
+<template>
   <div class="drawer-background" :class="{show: active}" @click="$emit('close-data-drawer')" /> 
 
   <div class="drawer" :class="{show: active}">
@@ -108,7 +108,7 @@ export default {
 
 @media (min-width: 500px) {
     .drawer {
-        width: 450px;
+        width: 45%;
     }
 }
-</style> -->
+</style>
