@@ -2,19 +2,34 @@
   <div class="page">
     <h2>Главная</h2>
     <div class="product-list">
-      <ProductCard v-for="item of catalog" v-bind:key="item.id" v-bind:data="item" >
-        <button class="btn" v-on:click="addToCart(item)">Выбрать поездку</button>
+    <ProductDescriptionDrawer
+      :data = "item" 
+      :active="active.data_drawer" />
+      <ProductCard v-for="item of catalog" v-bind:key="item.id" v-bind:data="item" >        
+        <button class="btn" v-on:click="addToCart(item)">В корзинку</button>
+        <button class="btn_v" v-on:click="preView(item)">Взглянуть</button>
       </ProductCard>
     </div>
   </div>
 </template>
 
 <script>
+//import item from '../data/catalog.json'
 import ProductCard from '../components/ProductCard.vue'
+import ProductDescriptionDrawer from '../components/ProductDescriptionDrawer.vue'
 
 export default {
-  components: { ProductCard },
+  components: { ProductCard, ProductDescriptionDrawer},
   name: 'Home',
+  data () {
+    return {
+      //items: items,
+      //product: null,
+      active: {
+        data_drawer: false
+      }
+    }
+  },
   computed: {
     catalog() {
       return this.$store.getters.getCatalog
@@ -23,31 +38,39 @@ export default {
   methods: {
     addToCart(item) {
       this.$store.dispatch('addToCart', item)
+    },
+    preView(item) {
+      this.$store.dispatch('preView', item)
+      this.active.data_drawer = true
+      console.log(this.item)
     }
-  }
-}
+  }  
+  }    
 </script>
 
 <style>
   .product-list {
     display: flex;
-    justify-content: left;
+    flex-direction: row;
     flex-wrap: wrap;
-    /*max-width: 2050px;*/
+    justify-content: left;
+    /*flex-wrap: wrap;*/
+    width: 100%;
+    height: 100%;
     /*margin: 30px 0 0 0;*/
     /*border: 1px solid black;*/
   }
   .page {
     position: relative;
-    margin-top: 70px;
-    border: 4px solid yellow;
+    /*border: 4px solid yellow;*/
+    /*background-color: rgba(0,0,0,1%);*/
     /*min-height: 2100px;*/
     /*max-width: 2000px;*/
   }
 
 h2 {
   color: grey;
-  width: 200px;
+  width: 400px;
   align-self: center;
   margin-top: 10px;
   font-family: 'Source Sans Pro', sans-serif;
@@ -56,46 +79,56 @@ h2 {
   font-size: 36px;
   border-bottom: 5px solid grey;
 }
-  .btn {
+  .btn {            
     outline: none;
-    background: #f8f4f4;
-    background: linear-gradient(164deg,#f8f4f4 20%, #a8b4a8 70%);
-    background: -webkit-linear-gradient(164deg,#f8f4f4 20%, #a8b4a8 70%);
-    background: -moz-linear-gradient(164deg,#f8f4f4 20%, #a8b4a8 70%);
+    background: #990f04;
     position: absolute;
     box-shadow: 1px 3px 4px 1px grey;
-    bottom: 10px;
-    right: 10px;
-    padding: 10px;
+    bottom: 14px;
+    color: white;
+    right: 180px;
+    width: 130px;
+    padding: 7px;
     margin: 10px;
-    border-radius: 15px 15px ;
+    border-radius: 15px 0 0 15px ;
+    transition: 0.2s;
+    border: none;        
+  }
+  .btn_v {            
+    outline: none;
+    background: #990f04;
+    position: absolute;
+    box-shadow: 1px 3px 4px 1px grey;
+    bottom: 14px;
+    color: white;
+    right: 49px;
+    width: 130px;
+    padding: 7px;
+    margin: 10px;
+    border-radius: 0 15px 15px 0 ;
     transition: 0.2s;
     border: none;
+        
   }
   .btn:hover {
-    background: #f8f4f4;
-    background: linear-gradient(355deg,#f8f4f4 30%, #07c807 90%);
-    background: -webkit-linear-gradient(355deg,#f8f4f4 30%, #07c807 90%);
-    background: -moz-linear-gradient(355deg,#f8f4f4 30%, #07c807 90%);
-    cursor: url("../assets/Vector.png"), pointer;
-
+    background: #d8380e;
+    cursor: pointer;
   }
+  
   .btn:active {
-    color: white;
-    background: black;
+    background: #fc816c;
   }
-  @media (max-width: 980px) {
-    .product-list {
-
-    }
+  .btn_v:hover {
+    background: #d8380e;
+    cursor: pointer;
   }
-
+  
+  .btn_v:active {
+    background: #fc816c;
+  }
   @media (max-width: 400px) {
     .page {
       min-width: 360px;
-
-
     }
-
   }
 </style>
